@@ -4,25 +4,9 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Compare Property Files</title>
-  <meta name="description" content="Compare the contents of two proeprty files">
-  <meta name="author" content="Junho Park">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
-  <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-81645062-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
+  <jsp:include page="include/head.jsp">
+    <jsp:param name="pageName" value="Home"/>
+  </jsp:include>
 </head>
 
 <body>
@@ -30,7 +14,9 @@
     <h1>Compare Property Files</h1>
 
     <p class="lead">
-      Copy &amp; paste the contents of your property files into the fields below and then click on the submit on the button to compare.
+      Copy &amp; paste the contents of your property files into the fields below and then click on the submit button.
+      <br />
+      Comparison is done on server-side by reading in the contents of the textareas into java.util.Properties objects.
     </p>
 
     <c:if test="${isComparisonBeingSubmitted}">
@@ -157,7 +143,7 @@
     </div>
   </div>
 
-  <script src="lib/jquery-3.1.0.min.js" type="text/javascript"></script>
-  <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../../lib/jquery-3.1.0.min.js" type="text/javascript"></script>
+  <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
