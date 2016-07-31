@@ -2,7 +2,7 @@
 
 This is a template for a web application that uses embedded Jetty. This code was initially cloned from http://java.heroku.com/ (https://cloner.heroku.com/apps/template-java-embedded-jetty).
 
-Upon cloning, the following updates were made:
+You can check it out by going to: https://comparepropertyfiles.com
 
 ## Running the application locally
 
