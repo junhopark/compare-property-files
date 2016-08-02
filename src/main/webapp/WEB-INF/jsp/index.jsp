@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-md-12">
             <c:if test="${not empty inAButMissingInB}">
-              <h4 class="text-danger">Found keys that are in Property File A but missing in Property Files B:</h4>
+              <h4 class="text-danger">Found keys that are in Property File A but missing in Property File B:</h4>
               <ul>
                 <c:forEach items="${inAButMissingInB}" var="item">
                   <li>${item}</li>
@@ -49,7 +49,7 @@
             </c:if>
 
             <c:if test="${not empty inBButMissingInA}">
-              <h4 class="text-danger">Found keys that are in Property File B but missing in Property Files A:</h4>
+              <h4 class="text-danger">Found keys that are in Property File B but missing in Property File A:</h4>
               <ul>
                 <c:forEach items="${inBButMissingInA}" var="item">
                   <li>${item}</li>
