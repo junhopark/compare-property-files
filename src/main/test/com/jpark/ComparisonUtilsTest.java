@@ -10,22 +10,22 @@ import java.util.Properties;
  */
 public class ComparisonUtilsTest {
   @Test
-  public void test_possiblyContainsDuplicateKeys() {
-    Assert.assertTrue(ComparisonUtils.possiblyContainsDuplicateKeys("key\r\nkey"));
-    Assert.assertTrue(ComparisonUtils.possiblyContainsDuplicateKeys("key=\r\nkey"));
-    Assert.assertTrue(ComparisonUtils.possiblyContainsDuplicateKeys("key\r\nkey="));
+  public void test_getDuplicatedKeys() {
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("key\r\nkey").toArray()[0].equals("key"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("key=\r\nkey").toArray()[0].equals("key"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("key\r\nkey=").toArray()[0].equals("key"));
 
-    Assert.assertTrue(ComparisonUtils.possiblyContainsDuplicateKeys("key = A\r\nkey=A"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("key = A\r\nkey=A").toArray()[0].equals("key"));
 
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys(""));
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys(" "));
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("\r\n"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("").isEmpty());
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys(" ").isEmpty());
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("\r\n").isEmpty());
 
     // Let's ignore lines that start with '#'.  It's a comment.
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("#test\r\n#test"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("#test\r\n#test").isEmpty());
 
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("keyA\r\nkeyB"));
-    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("keyA=X\r\nkeyB=X"));
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("keyA\r\nkeyB").isEmpty());
+    Assert.assertTrue(ComparisonUtils.getDuplicatedKeys("keyA=X\r\nkeyB=X").isEmpty());
   }
 
   @Test

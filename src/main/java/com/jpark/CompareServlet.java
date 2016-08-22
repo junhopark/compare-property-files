@@ -1,7 +1,5 @@
 package com.jpark;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,10 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 @WebServlet(urlPatterns = {"/compare/*"})
 public class CompareServlet extends HttpServlet {
@@ -38,8 +33,8 @@ public class CompareServlet extends HttpServlet {
     request.setAttribute("differences", ComparisonUtils.getKeysWithDifferentValues(propertiesA, propertiesB));
     request.setAttribute("inAButMissingInB", ComparisonUtils.getKeysNotInSecondProperties(propertiesA, propertiesB));
     request.setAttribute("inBButMissingInA", ComparisonUtils.getKeysNotInSecondProperties(propertiesB, propertiesA));
-    request.setAttribute("propertiesAContainsDuplicateKeys", ComparisonUtils.possiblyContainsDuplicateKeys(propertiesTextA));
-    request.setAttribute("propertiesBContainsDuplicateKeys", ComparisonUtils.possiblyContainsDuplicateKeys(propertiesTextB));
+    request.setAttribute("duplicatedKeysInPropertiesA", ComparisonUtils.getDuplicatedKeys(propertiesTextA));
+    request.setAttribute("duplicatedKeysInPropertiesB", ComparisonUtils.getDuplicatedKeys(propertiesTextB));
     request.setAttribute("propertiesAText", propertiesTextA);
     request.setAttribute("propertiesBText", propertiesTextB);
     request.getRequestDispatcher("/").forward(request, response);

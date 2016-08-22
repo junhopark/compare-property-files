@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <title>Compare Property Files: ${param.pageName}</title>
-<meta name="description" content="Compare the contents of two proeprty files">
+<meta name="description" content="Compares the contents of two properties files.">
 <meta name="author" content="Junho Park">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="viewport" content="width=device-width, initial-scale=1">

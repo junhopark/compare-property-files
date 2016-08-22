@@ -20,21 +20,23 @@
     </p>
 
     <c:if test="${isComparisonBeingSubmitted}">
-      <c:if test="${propertiesAContainsDuplicateKeys || propertiesBContainsDuplicateKeys}">
-        <h4 class="text-warning">
-          WARNING:
-          <c:choose>
-            <c:when test="${propertiesAContainsDuplicateKeys && !propertiesBContainsDuplicateKeys}">
-              It appears that Property File A may contain 1 or more duplicate keys
-            </c:when>
-            <c:when test="${!propertiesAContainsDuplicateKeys && propertiesBContainsDuplicateKeys}">
-              It appears that Property File B may contain 1 or more duplicate keys
-            </c:when>
-            <c:when test="${propertiesAContainsDuplicateKeys && propertiesBContainsDuplicateKeys}">
-              It appears that both Property File A &amp; Property File B may contain 1 or more duplicate keys
-            </c:when>
-          </c:choose>
-        </h4>
+      <c:if test="${!empty duplicatedKeysInPropertiesA || !empty duplicatedKeysInPropertiesB}">
+        <c:if test="${!empty duplicatedKeysInPropertiesA}">
+          <h4 class="text-warning">WARNING: It appears that Property File A may contain the following duplicate keys:</h4>
+          <ul>
+            <c:forEach items="${duplicatedKeysInPropertiesA}" var="item">
+              <li>${item}</li>
+            </c:forEach>
+          </ul>
+        </c:if>
+        <c:if test="${!empty duplicatedKeysInPropertiesB}">
+          <h4 class="text-warning">WARNING: It appears that Property File B may contain the following duplicate keys:</h4>
+          <ul>
+            <c:forEach items="${duplicatedKeysInPropertiesB}" var="item">
+              <li>${item}</li>
+            </c:forEach>
+          </ul>
+        </c:if>
       </c:if>
 
       <div class="row">

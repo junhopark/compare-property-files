@@ -8,7 +8,8 @@ import java.util.*;
  * Created by jpark on 7/30/16.
  */
 class ComparisonUtils {
-  static boolean possiblyContainsDuplicateKeys(final String propertiesText) {
+  static Set<String> getDuplicatedKeys(final String propertiesText) {
+    final SortedSet<String> duplicatedKeys = new TreeSet<>();
     final Set<String> keys = new HashSet<>();
     for (String string : propertiesText.split("\r\n")) {
       final String key = StringUtils.trim(string.split("=")[0]);
@@ -18,16 +19,17 @@ class ComparisonUtils {
       }
 
       if (keys.contains(key)) {
-        return true;
+        duplicatedKeys.add(key);
       }
 
       keys.add(key);
     }
-    return false;
+
+    return duplicatedKeys;
   }
 
   static Set<String> getKeysNotInSecondProperties(final Properties first, final Properties second) {
-    final Set<String> keysNotInSecondProperties = new HashSet<>();
+    final SortedSet<String> keysNotInSecondProperties = new TreeSet<>();
     final Set secondPropertiesKeys = second.keySet();
     for (Object key : first.keySet()) {
       final String keyString = (String) key;
@@ -41,7 +43,7 @@ class ComparisonUtils {
 
   static Set<String> getKeysWithDifferentValues(final Properties first, final Properties second) {
     final Set<Object> keysInBothProperties = new HashSet<>();
-    final Set<String> keysWithDifferentValues = new HashSet<>();
+    final SortedSet<String> keysWithDifferentValues = new TreeSet<>();
 
     keysInBothProperties.addAll(first.keySet());
     keysInBothProperties.addAll(second.keySet());
