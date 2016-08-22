@@ -21,6 +21,9 @@ public class ComparisonUtilsTest {
     Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys(" "));
     Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("\r\n"));
 
+    // Let's ignore lines that start with '#'.  It's a comment.
+    Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("#test\r\n#test"));
+
     Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("keyA\r\nkeyB"));
     Assert.assertFalse(ComparisonUtils.possiblyContainsDuplicateKeys("keyA=X\r\nkeyB=X"));
   }

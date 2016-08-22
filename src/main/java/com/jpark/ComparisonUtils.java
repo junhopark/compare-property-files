@@ -13,7 +13,7 @@ class ComparisonUtils {
     for (String string : propertiesText.split("\r\n")) {
       final String key = StringUtils.trim(string.split("=")[0]);
 
-      if (StringUtils.isBlank(key)) {
+      if (StringUtils.isBlank(key) || StringUtils.startsWith(key, "#")) {
         continue;
       }
 
